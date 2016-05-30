@@ -1,0 +1,23 @@
+{
+  "name": "react-flux-todo-app",
+  "version": "1.0.0",
+  "description": "A sample boilerplate todo app using react with flux architecture",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bittu/react-flux-todo-app.git"
+  },
+  "keywords": [
+    "react",
+    "flux"
+  ],
+  "author": "Sandeep vemula",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bittu/react-flux-todo-app/issues"
+  },
+  "homepage": "https://github.com/bittu/react-flux-todo-app#readme"
+}
