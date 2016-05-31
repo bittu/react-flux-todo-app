@@ -16,6 +16,8 @@ export default class Main extends Component {
 
     const allTodos = this.props.allTodos
     console.log(Object.values(allTodos))
+    const vals = Object.keys(obj).map(key => obj[key]);
+
     let filteredTodos = allTodos.filter((todo) => {
 																					switch (this.props.nowShowing) {
 																						case app.ACTIVE_TODOS:
@@ -28,8 +30,8 @@ export default class Main extends Component {
 																				});
     let todos = []
 
-    for (var key in filteredTodos) {
-      todos.push(<TodoItem key={key} todo={filteredTodos[key]} />)
+    for (var key in allTodos) {
+      todos.push(<TodoItem key={key} todo={allTodos[key]} />)
     }
 
     return (
