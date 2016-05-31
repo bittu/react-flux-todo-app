@@ -1,4 +1,5 @@
 var gulp = require('gulp')
+var connect = require('gulp-connect')
 
 var browserify = require('browserify')
 var watchify = require('watchify')
@@ -32,9 +33,23 @@ function map_error(err) {
       + ': '
       + chalk.yellow(err.message))
   }
-
-  this.end()
 }
+
+function bundle_js(bundler) {
+  return bundler.bundle()
+    .on('error', map_error)
+    .pipe(source('bundle.js'))
+    .pipe(buffer())
+    .pipe(gulp.dest('./dist'));
+}
+
+gulp.task('connect', function() {
+  connect.server({
+    root: 'dist',
+    port: 3000,
+    livereload: true
+  })
+})
 
 gulp.task('watch', function () {
   var args = merge(watchify.args, { debug: true })
@@ -51,13 +66,7 @@ gulp.task('watch', function () {
     gutil.log(chalk.blue('re-building...'));
     bundle_js(bundler)
   })
-  bundler.on('log', gutil.log);
+  bundler.on('log', gutil.log)
 })
 
-function bundle_js(bundler) {
-  return bundler.bundle()
-    .on('error', map_error)
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-    .pipe(gulp.dest('./dist'));
-}
+gulp.task('default', ['connect', 'watch'])
